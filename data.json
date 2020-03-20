@@ -1,0 +1,12 @@
+[
+	{
+		"text":"父节点1",
+		"state":"closed",
+		"children":[{"text":"儿子1"},{"text":"儿子11"},{"text":"儿子111"}]
+	},
+	{
+		"text":"父节点2",
+		"state":"closed",
+		"children":[{"text":"儿子2"},{"text":"儿子22"},{"text":"儿子222"}]
+	}
+]

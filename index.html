@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<style type="text/css">
+			.progressbar-value,
+			.progressbar-value .progressbar-text {
+			  background-color:green;
+			  color: #000000;
+			}
+		</style>
+		<script type="text/javascript">
+			 var id=0;
+			$(function (){
+				$('#p2').progressbar({ 
+					value: 0, 
+					width:400
+				}); 
+				
+				$("#bt").one("click",function (){
+					  //var value = $('#p2').progressbar('getValue'); 
+					  // $('#p2').progressbar('setValue',80); 
+					  
+					  id=setInterval("downLoad()",1000);
+				})
+			})
+			function downLoad(){
+				var value = $('#p2').progressbar('getValue'); 
+				value=value+10;
+				if(value<=100){
+					$('#p2').progressbar('setValue',value); 
+				}else{
+					clearInterval(id);//清空定时器
+					alert("下载成功！");
+				}
+			    
+			}
+			function showMyPanel(){
+				$("#panel2").panel("open");
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="panel1" 
+			 class="easyui-panel" 
+			 title="我是面板" style="width:700px;height:100px;padding:10px;">	
+			 老黄很帅
+		</div>
+		<hr/>
+		<div style="width:400px;height: 300px;border: 1px solid red;">
+			<div id="panel2" class="easyui-panel" title="My Panel"     
+        		style="width:200px;height:200px;padding:10px;background:#fafafa;"   
+        		data-options="iconCls:'icon-add',closable:true,    
+                collapsible:true,minimizable:true,maximizable:true,openAnimation:'slide',openDuration:1000">  
+			</div> 
+			<button type="button" onclick="showMyPanel()">显示面板</button>
+		</div>
+		<hr/>
+		<div id="panel3"></div>
+		<script type="text/javascript">
+			$(function (){
+				$('#panel3').panel({    
+				   	title:"我是面板3",
+				   	iconCls:"icon-ok",
+				   	width:400,
+				   	height:300,
+				   	collapsible:true,
+				   	maximizable:true,
+				   	closable:true,
+				   	tools:[
+						{
+							iconCls:'icon-add',
+							handler:function(){
+								alert("点击了我添加");
+							}
+						},
+						{
+							iconCls:'icon-edit',
+							handler:function(){
+								alert("点击了修改");
+							}
+						}
+					],
+					onBeforeClose:function (){
+						alert("你真的想关闭我吗？？");
+						//return false;//返回false会取消掉当前事件
+					},
+					onClose:function (){
+						alert("你真的关闭了我");
+					}
+				});  
+			})
+		</script>
+		<hr />
+		<div id="p" class="easyui-progressbar" data-options="value:60" style="width:400px;"></div> 
+		<div id="p2" style="background-color: pink;"></div> 
+		<button type="button" id="bt">下载</button>
+		
+	</body>
+
+</html>

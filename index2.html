@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+
+		<script type="text/javascript">
+			function showAlert(){
+				//alert("警告！！！！");
+				$.messager.alert('警告1','这是一个提示信息！');
+				$.messager.alert('警告1','这是一个提示信息！','error');
+				$.messager.alert('警告2','这是一个提示信息！','question');
+				$.messager.alert('警告3','这是一个提示信息！','info');
+				$.messager.alert('警告4','这是一个提示信息！','warning');
+			}
+			function showAlert2(){
+				//confirm("确定删除吗？");
+				$.messager.confirm('确认对话框', '您想要退出该系统吗？', function(r){
+					//接受到true 或者是false
+					alert(r);
+				});
+			}
+			
+			function showAlert3(){
+				
+				$.messager.prompt('接受狂', '请输入你的名字', function(r){
+					alert("接收到的名字:"+r);
+				});
+			}
+			
+			function showAlert4(){
+				
+				$.messager.progress({
+					title:"页面正在加载。。。",
+					interval:1000
+					//text:"我已经很努力的。。"
+				});
+				
+				setTimeout("goIndex()",11000);
+			}
+			function goIndex(){
+				$.messager.progress("close");
+				 location.href="index.html";
+			}
+			
+			
+			$(function(){
+				$.messager.show({
+					title:'我的消息',
+					msg:'欢迎！黄老板！',
+					timeout:5000,
+					showType:'fade',
+					showSpeed:1000
+				});
+				//初始化提示信息
+				$('#haha').tooltip({
+					position:"right",
+					content:"我是提示信息",
+					trackMouse:true,
+					//showEvent:"click",
+					onShow:function (){
+						//alert("马上就会出现提示");
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<a title="This is the tooltip message." class="easyui-tooltip">Hover me</a>
+		<br/>
+		 <img id="haha" src="img/5.jpg" width="300"/>
+		<hr />
+		<button type="button" onclick="showAlert()">警告框</button>
+		
+		<button type="button" onclick="showAlert2()">确认框</button>
+		
+		<button type="button" onclick="showAlert3()">接受框</button>
+		
+		<button type="button" onclick="showAlert4()">进度条框</button>
+		<br />
+		<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">按钮1</a>
+		<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">按钮2</a>
+		<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">按钮3</a>
+		
+		<span style="background-color: pink;color: green;" id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">按钮4</span>
+	</body>
+
+</html>
